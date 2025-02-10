@@ -9,6 +9,9 @@ import fastifyJwt from "fastify-jwt";
 dotenv.config()
 const PORT = process.env.PORT
 const main = async () => {
+    // server.get('/', (req, res) => {
+    //     res.send('Backend is running');
+    //   });
     server.register(cors, {
         origin: '*',
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
