@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { AllTasks, } from './Todo';
 import ThemeToggle from './ThemeToggle';
 import { useNavigate } from 'react-router';
-const url = 'http://localhost:4000'
+
+const url = import.meta.env.VITE_URL
 function Home({local, setLocal}) {
     const [tasks, setTasks] = useState([])
     const [inputedTask, setInputedTask] = useState('')

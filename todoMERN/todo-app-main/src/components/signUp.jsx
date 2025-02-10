@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const PASSWORD_REGEX = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+const url = import.meta.env.VITE_URL
 const SignUp =  () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -30,7 +31,7 @@ const SignUp =  () => {
         if (!PASSWORD_REGEX.test(password)) {
           throw new Error('Invalid password. Must contain at least 8 characters, including uppercase, lowercase, number, and special character');
         }
-          const data = await fetch("http://localhost:4000/api/tasksuser/signup", {
+          const data = await fetch(url + "/api/tasksuser/signup", {
             method: 'POST',
             body: JSON.stringify({email:trimEmail, password:trimPassword}),
             headers: {

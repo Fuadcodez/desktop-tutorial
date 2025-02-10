@@ -4,7 +4,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import SignUp from './components/signUp'
 import { Routes, Route, Navigate } from 'react-router'
-const url = 'http://localhost:4000'
+const url = import.meta.env.VITE_URL
 function App() {
   const [local, setLocal] = useState(null) 
   useEffect(() =>{

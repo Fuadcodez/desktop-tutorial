@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate , Link} from 'react-router';
+
+const url = import.meta.env.VITE_URL
+console.log(url)
 const Login = ({setLocal}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,7 +23,7 @@ const Login = ({setLocal}) => {
         if (!email || !password) {
             throw new Error('Please fill in all fields');
         }
-        const data = await fetch("http://localhost:4000/api/tasksuser/login", {
+        const data = await fetch( url + '/api/tasksuser/login', {
           method: 'POST',
           body: JSON.stringify({email:trimEmail, password:trimPassword}),
           headers: {
