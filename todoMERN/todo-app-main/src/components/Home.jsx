@@ -14,13 +14,13 @@ function Home({local, setLocal}) {
     const [load, setLoad] = useState(false)
     const handleFormSubmit = async (e) => {
       e.preventDefault();
+      const trimInput = inputedTask.trim();
+      if (!trimInput) return;
       setLoad(false)
       setLoading(false)
       try {
         setLoad(true)
         setLoading(true)
-        const trimInput = inputedTask.trim();
-        if (!trimInput) return;
         const data = await fetch(url + '/api/tasks', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json',
@@ -166,7 +166,7 @@ function Home({local, setLocal}) {
           </svg>
             <input type="text" placeholder='Create a new todo...' className='flex-1 bg-transparent outline-none text-[hsl(235,24%,19%)] dark:text-[hsl(236,33%,92%)]' value={inputedTask} onChange={(e)=>setInputedTask(e.target.value)}/>
             </div>
-            <button className='bg-[hsl(234,39%,85%)] hover:bg-[hsl(236,33%,92%)] text-lg rounded-lg py-2 transition-all duration-300 ease-linear text-black disabled:bg-opacity-50 disabled:cursor-not-allowed' onClick={handleFormSubmit} disabled={load}>{load? "Creating...": "Create a todo"}</button>
+            <button className='bg-[hsl(234,39%,85%)] hover:bg-[hsl(236,33%,92%)] text-lg rounded-lg py-2 transition-all duration-300 ease-linear text-black disabled:bg-opacity-50 disabled:cursor-not-allowed' onClick={handleFormSubmit} disabled={load || inputedTask === ''}>{load? "Creating...": "Create a todo"}</button>
           </form>
           {loading ? (<div className='flex justify-center items-center h-full pt-16'><PulseLoader color="#36d7b7" size={50} /></div>) : (<>
             {tasks.length > 0 && (

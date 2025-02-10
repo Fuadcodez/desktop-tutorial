@@ -109,7 +109,7 @@ const AllTasks = ({tasks, category, setCategory, removeTasks, toggleTaskCompleti
                </div>
 
                </div>
-               <button className={`text-xs `} onClick={clearCompleted}>Clear completed</button>
+               <button className={`text-xs `} onClick={clearCompleted}>{tasks.find(task=>task.completedTask)? "Clear completed": ""}</button>
              </div>
              </div>
              </SortableContext>
