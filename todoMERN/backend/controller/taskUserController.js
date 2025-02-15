@@ -15,7 +15,7 @@ const loginTaskUsers = async (req, res)=>{
     if(!checkUser) return res.status(404).send({message: 'User not found'});
     const passwordConfirm = await confirmPassword(checkUser.password, checkUser.salt, password);
     if (!passwordConfirm) return res.status(404).send({message: 'invalid credentials'});
-    const token = server.jwt.sign({ id: checkUser._id }, {expiresIn: '1d'})
+    const token = server.jwt.sign({ id: checkUser._id })
     res.status(200).send({email, token});
 }
 export { createTaskUsers, loginTaskUsers}
